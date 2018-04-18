@@ -1,0 +1,65 @@
+apply plugin: 'com.android.application'
+
+project.ext {
+    supportLibraryVersion = "26.1.0"
+    daggerVersion = "2.13"
+    butterKnifeVersion = "8.8.1"
+    rxJavaVersion = "2.1.0"
+    rxAndroidVersion = "2.0.1"
+    timberVersion = "4.6.0"
+    lifecycleVersion = "1.1.1"
+}
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.example.daggerandroidmvvm"
+        minSdkVersion 14
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation "com.android.support:appcompat-v7:$project.supportLibraryVersion"
+
+    // Dagger core
+    annotationProcessor "com.google.dagger:dagger-compiler:$project.daggerVersion"
+    implementation "com.google.dagger:dagger:$project.daggerVersion"
+
+    // Dagger Android
+    annotationProcessor "com.google.dagger:dagger-android-processor:$project.daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$project.daggerVersion"
+    // if you are not using support library, include this instead
+    implementation "com.google.dagger:dagger-android:$project.daggerVersion"
+
+    // ButterKnife
+    implementation "com.jakewharton:butterknife:$project.butterKnifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$project.butterKnifeVersion"
+
+    // ReactiveX
+    implementation "io.reactivex.rxjava2:rxjava:$project.rxJavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$project.rxAndroidVersion"
+
+    // Timber
+    implementation "com.jakewharton.timber:timber:$project.timberVersion"
+
+    // Lifecycle
+    implementation "android.arch.lifecycle:runtime:$project.lifecycleVersion"
+    implementation "android.arch.lifecycle:extensions:$project.lifecycleVersion"
+    annotationProcessor "android.arch.lifecycle:compiler:$project.lifecycleVersion"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+}
